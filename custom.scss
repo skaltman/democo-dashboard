@@ -1,0 +1,13 @@
+/*-- scss:defaults --*/
+$navbar-bg: #EEF3F6;
+$navbar-fg: #383a3c;
+$navbar-hl: #040548;
+
+// fonts
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+3:300,300i,400,400i);
+$font-family-sans-serif: "Source Sans 3", sans-serif !default;
+
+/*-- scss:rules --*/
+.card-header {
+  font-size: 1.5rem;
+}

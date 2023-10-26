@@ -1,0 +1,86 @@
+---
+title: "DemoCo Customer Churn"
+format: 
+  dashboard:
+    orientation: columns
+logo: images/logo.png
+theme:
+  - custom.scss
+---
+
+```{python}
+import pandas as pd
+from helpers import plot_churn_reason, plot_contract_type, table_purchases
+from matplotlib import rcParams
+
+rcParams.update({"savefig.bbox": "tight"})
+
+churn = pd.read_csv("data/churn.csv")
+churn_reason = pd.read_csv("data/churn_reason.csv")
+purchase_characteristics = pd.read_csv("data/purchase_characteristics.csv")
+```
+
+## {.sidebar}
+
+# Standard
+
+## Column {width=50%}
+
+```{python}
+#| title: Churn reason
+plot_churn_reason(churn_reason, "Standard")
+```
+
+## Column {width=50%}
+
+```{python}
+#| title: Purchase characteristics
+table_purchases(purchase_characteristics, "Standard")
+```
+
+```{python}
+#| title: Contract type
+plot_contract_type(churn, "Standard")
+```
+
+# Premium
+
+## Column {width=50%}
+
+```{python}
+#| title: Churn reason
+plot_churn_reason(churn_reason, "Premium")
+```
+
+## Column {width=50%}
+
+```{python}
+#| title: Purchase characteristics
+table_purchases(purchase_characteristics, "Premium")
+```
+
+```{python}
+#| title: Contract type
+plot_contract_type(churn, "Premium")
+```
+
+# Professional
+
+## Column {width=50%}
+
+```{python}
+#| title: Churn reason
+plot_churn_reason(churn_reason, "Professional")
+```
+
+## Column {width=50%}
+
+```{python}
+#| title: Purchase characteristics
+table_purchases(purchase_characteristics, "Professional")
+```
+
+```{python}
+#| title: Contract type
+plot_contract_type(churn, "Professional")
+```
