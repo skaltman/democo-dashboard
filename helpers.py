@@ -24,15 +24,15 @@ def plot_churn_reason(df, product_type):
   
   print(plot)
   
-def plot_contract_type(df, product_type):
+def plot_contract_type(df, product_type, y_var="last_purchase_days_ago", y_var_label="Days since last purchase"):
   churn_df = df[df["product"]==product_type]
-  plot = (ggplot(churn_df, aes(x='contract', y='last_purchase_days_ago', fill='churn')) +
+  plot = (ggplot(churn_df, aes(x='contract', y=y_var, fill='churn')) +
             geom_boxplot() +
             scale_fill_manual(values=color_palette) +
             theme_minimal() +
             labs(
                 x="Contract type",
-                y="Days since last purchase",
+                y=y_var_label,
                 fill="Churned",
                 title="Churn status by contract type and days since purchase"
             ) 
