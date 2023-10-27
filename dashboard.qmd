@@ -11,9 +11,9 @@ theme:
 
 ```{python}
 import pandas as pd
-from helpers import plot_churn_reason, plot_contract_type, table_purchases
+from helpers import color_palette, plot_churn_reason, plot_contract_type, table_purchases
 from matplotlib import rcParams
-# from shiny import render, reactive, ui
+from itables import show
 
 rcParams.update({"savefig.bbox": "tight"})
 
@@ -24,63 +24,229 @@ purchase_characteristics = pd.read_csv("data/purchase_characteristics.csv")
 
 # Standard
 
-## Column {width=50%}
+## Column {.tabset}
 
 ```{python}
-#| title: Churn reason
+#| title: Plot
 plot_churn_reason(churn_reason, "Standard")
 ```
 
-## Column {width=50%}
+```{python}
+#| title: Data
+show(churn_reason[churn_reason["product"]=="Standard"])
+```
+
+## Column {width=65%}
+
+### Row
 
 ```{python}
-#| title: Purchase characteristics
-table_purchases(purchase_characteristics, "Standard")
+#| component: valuebox
+#| title: "Churn rate 2022"
+#| icon: archive
+#| color: "#7A6C5D"
+dict(
+  value = "17%"
+)
 ```
 
 ```{python}
-#| title: Contract type
+#| component: valuebox
+#| title: "Current churn rate"
+#| icon: graph-down
+#| color: "#86C7ED"
+dict(
+  value = "14%"
+)
+```
+
+```{python}
+#| component: valuebox
+#| title: "Churn goal"
+#| icon: bullseye
+#| color: "#A54657"
+dict(
+  value = "10%"
+)
+```
+
+
+### Row 
+
+#### Column {.tabset}
+
+```{python}
+#| title: Days since purchase
 plot_contract_type(churn, "Standard")
+```
+
+```{python}
+#| title: Purchase amount
+plot_contract_type(
+  churn, 
+  "Standard", 
+  "average_purchase_amount", 
+  "Average purchase amount"
+)
+```
+
+#### Column
+
+```{python}
+#| title: Purchase characteristics
+show(table_purchases(purchase_characteristics, "Standard"))
 ```
 
 # Premium
 
-## Column {width=50%}
+## Column {.tabset}
 
 ```{python}
-#| title: Churn reason
+#| title: Plot
 plot_churn_reason(churn_reason, "Premium")
 ```
 
-## Column {width=50%}
+```{python}
+#| title: Data
+churn_reason[churn_reason["product"]=="Premium"]
+```
+
+## Column {width=65%}
+
+### Row
+
+```{python}
+#| component: valuebox
+#| title: "Churn rate 2022"
+#| icon: archive
+#| color: "#7A6C5D"
+dict(
+  value = "17%"
+)
+```
+
+```{python}
+#| component: valuebox
+#| title: "Current churn rate"
+#| icon: graph-down
+#| color: "#86C7ED"
+dict(
+  value = "15%"
+)
+```
+
+```{python}
+#| component: valuebox
+#| title: "Churn goal"
+#| icon: bullseye
+#| color: "#A54657"
+dict(
+  value = "10%"
+)
+```
+
+
+### Row 
+
+#### Column {.tabset}
+
+```{python}
+#| title: Days since purchase
+plot_contract_type(churn, "Premium")
+```
+
+```{python}
+#| title: Purchase amount
+plot_contract_type(
+  churn, 
+  "Premium", 
+  "average_purchase_amount", 
+  "Average purchase amount"
+)
+```
+
+#### Column
 
 ```{python}
 #| title: Purchase characteristics
 table_purchases(purchase_characteristics, "Premium")
 ```
 
-```{python}
-#| title: Contract type
-plot_contract_type(churn, "Premium")
-```
-
 # Professional
 
-## Column {width=50%}
+## Column {.tabset}
 
 ```{python}
-#| title: Churn reason
+#| title: Plot
 plot_churn_reason(churn_reason, "Professional")
 ```
 
-## Column {width=50%}
+```{python}
+#| title: Data
+churn_reason[churn_reason["product"]=="Professional"]
+```
+
+## Column {width=65%}
+
+### Row
+
+```{python}
+#| component: valuebox
+#| title: "Churn rate 2022"
+#| icon: archive
+#| color: "#7A6C5D"
+dict(
+  value = "17%"
+)
+```
+
+```{python}
+#| component: valuebox
+#| title: "Current churn rate"
+#| icon: graph-down
+#| color: "#86C7ED"
+dict(
+  value = "13%"
+)
+```
+
+```{python}
+#| component: valuebox
+#| title: "Churn goal"
+#| icon: bullseye
+#| color: "#A54657"
+dict(
+  value = "10%"
+)
+```
+
+
+### Row 
+
+#### Column {.tabset}
+
+```{python}
+#| title: Days since purchase
+plot_contract_type(churn, "Professional")
+```
+
+```{python}
+#| title: Purchase amount
+plot_contract_type(
+  churn, 
+  "Professional", 
+  "average_purchase_amount", 
+  "Average purchase amount"
+)
+```
+
+#### Column
 
 ```{python}
 #| title: Purchase characteristics
 table_purchases(purchase_characteristics, "Professional")
 ```
 
-```{python}
-#| title: Contract type
-plot_contract_type(churn, "Professional")
-```
+
+
+
