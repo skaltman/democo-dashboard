@@ -124,6 +124,7 @@ churn_data |>
     .groups = "drop_last"
   ) |> 
   ungroup() |> 
+  mutate(average_purchase_amount = round(average_purchase_amount, 2)) |> 
   rename(
     `Average purchase` = average_purchase_amount,
     `Total transactions` = total_transactions,

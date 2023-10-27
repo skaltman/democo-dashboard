@@ -12,7 +12,7 @@ color_palette=[
 ]
 
 def plot_churn_reason(df, product_type):
-  churn_reason_product=df[df["product"]==product_type]
+  churn_reason_product=df[(df["product"]==product_type)]
 
   plot = (ggplot(churn_reason_product, aes(x="year.astype(str) + ' Q' + quarter.astype(str)", y='percent_churn', color='reason')) +
           geom_point() +
@@ -40,5 +40,8 @@ def plot_contract_type(df, product_type):
   print(plot)
   
 def table_purchases(df, product_type):
-  df = df.rename(columns={'contract': 'Contract type', 'churn': 'Churn'})
-  return df[df["product"]==product_type]
+  df_product = df[df["product"]==product_type]
+  df_product = df_product.rename(columns={'contract': 'Contract type', 'churn': 'Churn'})
+  df_product = df_product.drop("product", axis=1)
+  df_product = df_product.reset_index()
+  return df_product

@@ -1,13 +1,13 @@
 contract,churn,product,Average purchase,Total transactions,Days since last purchase
-Month-to-month,Did not churn,Premium,50.11771710305385,20,138
-Month-to-month,Did not churn,Professional,50.043004655469396,19,134
-Month-to-month,Did not churn,Standard,50.13541877162748,19,138
-Month-to-month,Churned,Premium,50.08492298657412,16,296
-Month-to-month,Churned,Professional,50.30993688506753,16,294
-Month-to-month,Churned,Standard,50.01247808937248,16,294
-One year,Did not churn,Premium,49.79154459839181,2,127
-One year,Did not churn,Professional,50.11950133811164,2,127
-One year,Did not churn,Standard,50.050048277968,2,125
-One year,Churned,Premium,49.98707686745104,2,281
-One year,Churned,Professional,50.22924903260821,2,282
-One year,Churned,Standard,50.15378997218353,2,280
+Month-to-month,Did not churn,Premium,50.12,20,138
+Month-to-month,Did not churn,Professional,50.04,19,134
+Month-to-month,Did not churn,Standard,50.14,19,138
+Month-to-month,Churned,Premium,50.08,16,296
+Month-to-month,Churned,Professional,50.31,16,294
+Month-to-month,Churned,Standard,50.01,16,294
+One year,Did not churn,Premium,49.79,2,127
+One year,Did not churn,Professional,50.12,2,127
+One year,Did not churn,Standard,50.05,2,125
+One year,Churned,Premium,49.99,2,281
+One year,Churned,Professional,50.23,2,282
+One year,Churned,Standard,50.15,2,280
