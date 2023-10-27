@@ -92,9 +92,23 @@ plot_contract_type(
 
 #### Column
 
+##### Row
+
 ```{python}
 #| title: Purchase characteristics
 show(table_purchases(purchase_characteristics, "Standard"))
+```
+
+##### Row
+
+##### Row
+
+```{python}
+#| title: Contracts by state
+show(churn[churn['product'] == "Standard"]
+  .groupby(['contract', 'state'])
+  .size()
+  .reset_index(name='count'))
 ```
 
 # Premium
@@ -167,9 +181,23 @@ plot_contract_type(
 
 #### Column
 
+##### Row
+
 ```{python}
 #| title: Purchase characteristics
 show(table_purchases(purchase_characteristics, "Premium"))
+```
+
+##### Row
+
+##### Row
+
+```{python}
+#| title: Contracts by state
+show(churn[churn['product'] == "Premium"]
+  .groupby(['contract', 'state'])
+  .size()
+  .reset_index(name='count'))
 ```
 
 # Professional
@@ -242,8 +270,21 @@ plot_contract_type(
 
 #### Column
 
+##### Row
+
 ```{python}
 #| title: Purchase characteristics
 show(table_purchases(purchase_characteristics, "Professional"))
 ```
+
+##### Row
+
+```{python}
+#| title: Contracts by state
+show(churn[churn['product'] == "Professional"]
+  .groupby(['contract', 'state'])
+  .size()
+  .reset_index(name='count'))
+```
+
 
