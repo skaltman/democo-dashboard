@@ -3,7 +3,7 @@ title: "DemoCo Customer Churn"
 format: 
   dashboard:
     orientation: columns
-server: shiny
+# server: shiny
 logo: images/logo.png
 theme:
   - custom.scss
@@ -13,7 +13,7 @@ theme:
 import pandas as pd
 from helpers import plot_churn_reason, plot_contract_type, table_purchases
 from matplotlib import rcParams
-from shiny import render, reactive, ui
+# from shiny import render, reactive, ui
 
 rcParams.update({"savefig.bbox": "tight"})
 
@@ -22,44 +22,13 @@ churn_reason = pd.read_csv("data/churn_reason.csv")
 purchase_characteristics = pd.read_csv("data/purchase_characteristics.csv")
 ```
 
-## {.sidebar}
-
-```{python}
-reasons=['Competitor', 'Price', 'Dissatisfaction', 'Other']
-years=[2022, 2023]
-
-ui.input_checkbox_group(
-  "reasons", 
-  "Churn reason",
-  reasons,
-  selected=reasons
-)
-
-ui.input_checkbox_group(
-  "years", 
-  "Year",
-  years,
-  selected=years
-)
-
-@reactive.Calc
-def filtered_churn_reason():
-    data = churn_reason[churn_reason["year"].isin(input.years())]
-    data = data[data["reason"].isin(input.reasons())]
-    return data
-```
-
 # Standard
 
 ## Column {width=50%}
 
 ```{python}
 #| title: Churn reason
-@render.plot
-def depth():
-    return plot_churn_reason(
-        filtered_churn_reason(), "Standard"
-    )
+plot_churn_reason(churn_reason, "Standard")
 ```
 
 ## Column {width=50%}
