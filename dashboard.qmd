@@ -108,7 +108,7 @@ plot_churn_reason(churn_reason, "Premium")
 
 ```{python}
 #| title: Data
-churn_reason[churn_reason["product"]=="Premium"]
+show(churn_reason[churn_reason["product"]=="Premium"])
 ```
 
 ## Column {width=65%}
@@ -169,7 +169,7 @@ plot_contract_type(
 
 ```{python}
 #| title: Purchase characteristics
-table_purchases(purchase_characteristics, "Premium")
+show(table_purchases(purchase_characteristics, "Premium"))
 ```
 
 # Professional
@@ -244,7 +244,7 @@ plot_contract_type(
 
 ```{python}
 #| title: Purchase characteristics
-table_purchases(purchase_characteristics, "Professional")
+show(table_purchases(purchase_characteristics, "Professional"))
 ```
 
 
