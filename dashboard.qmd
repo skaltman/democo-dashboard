@@ -62,7 +62,7 @@ dict(
 
 ```{python}
 #| component: valuebox
-#| title: "Churn goal"
+#| title: "Churn rate goal"
 #| icon: bullseye
 #| color: "#A54657"
 dict(
@@ -137,7 +137,7 @@ dict(
 
 ```{python}
 #| component: valuebox
-#| title: "Churn goal"
+#| title: "Churn rate goal"
 #| icon: bullseye
 #| color: "#A54657"
 dict(
@@ -178,12 +178,12 @@ show(table_purchases(purchase_characteristics, "Premium"))
 
 ```{python}
 #| title: Plot
-plot_churn_reason(churn_reason, "Professional")
+plot_churn_reason(churn_reason, "Premium")
 ```
 
 ```{python}
 #| title: Data
-churn_reason[churn_reason["product"]=="Professional"]
+show(churn_reason[churn_reason["product"]=="Premium"])
 ```
 
 ## Column {width=65%}
@@ -212,7 +212,7 @@ dict(
 
 ```{python}
 #| component: valuebox
-#| title: "Churn goal"
+#| title: "Churn rate goal"
 #| icon: bullseye
 #| color: "#A54657"
 dict(
@@ -246,7 +246,4 @@ plot_contract_type(
 #| title: Purchase characteristics
 show(table_purchases(purchase_characteristics, "Professional"))
 ```
-
-
-
 
