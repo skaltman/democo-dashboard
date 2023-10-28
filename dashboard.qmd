@@ -1,13 +1,18 @@
 ---
-title: "DemoCo Customer Churn"
-format: 
-  dashboard:
-    orientation: columns
-# server: shiny
+title: "Customer Churn"
+format: dashboard
 logo: images/logo.png
-theme:
-  - custom.scss
+theme: custom.scss
 ---
+
+```{python}
+#| tags: [parameters]
+
+# to render w/ a different product type:
+# quarto render dashboard.qmd -P product_type:Premium
+
+product_type = "Standard"
+```
 
 ```{python}
 import pandas as pd
@@ -22,30 +27,16 @@ churn_reason = pd.read_csv("data/churn_reason.csv")
 purchase_characteristics = pd.read_csv("data/purchase_characteristics.csv")
 ```
 
-# Standard
+# Churn (`{python} product_type`)
 
-## Column {.tabset}
-
-```{python}
-#| title: Plot
-plot_churn_reason(churn_reason, "Standard")
-```
-
-```{python}
-#| title: Data
-show(churn_reason[churn_reason["product"]=="Standard"])
-```
-
-## Column {width=65%}
-
-### Row
+## Row
 
 ```{python}
 #| component: valuebox
 #| title: "Churn rate 2022"
-#| icon: archive
-#| color: "#7A6C5D"
 dict(
+  icon = "archive",
+  color = "light",
   value = "17%"
 )
 ```
@@ -53,9 +44,9 @@ dict(
 ```{python}
 #| component: valuebox
 #| title: "Current churn rate"
-#| icon: graph-down
-#| color: "#86C7ED"
 dict(
+  icon = "graph-down",
+  color = "light",
   value = "14%"
 )
 ```
@@ -63,228 +54,46 @@ dict(
 ```{python}
 #| component: valuebox
 #| title: "Churn rate goal"
-#| icon: bullseye
-#| color: "#A54657"
 dict(
+  icon = "bullseye",
+  color = "warning",
   value = "10%"
 )
 ```
 
-
-### Row 
-
-#### Column {.tabset}
+## Row {height="60%"}
 
 ```{python}
-#| title: Days since purchase
-plot_contract_type(churn, "Standard")
+#| title: Reason for churn by quarter
+plot_churn_reason(churn_reason, product_type)
 ```
+
 
 ```{python}
-#| title: Purchase amount
-plot_contract_type(
-  churn, 
-  "Standard", 
-  "average_purchase_amount", 
-  "Average purchase amount"
-)
+#| title: Churn by contract type and days since purchase
+plot_contract_type(churn, product_type)
 ```
 
-#### Column
-
-##### Row
+## Row
 
 ```{python}
 #| title: Purchase characteristics
-show(table_purchases(purchase_characteristics, "Standard"))
+from IPython.display import Markdown
+characteristics = table_purchases(purchase_characteristics, product_type)
+Markdown(characteristics.to_markdown(index = False))
 ```
 
-##### Row
-
-##### Row
+# Data 
 
 ```{python}
-#| title: Contracts by state
-show(churn[churn['product'] == "Standard"]
+#| title: Churn Reason
+show(churn_reason[churn_reason["product"]==product_type])
+```
+
+```{python}
+#| title: Contracts by State
+show(churn[churn['product'] == product_type]
   .groupby(['contract', 'state'])
   .size()
   .reset_index(name='count'))
 ```
-
-# Premium
-
-## Column {.tabset}
-
-```{python}
-#| title: Plot
-plot_churn_reason(churn_reason, "Premium")
-```
-
-```{python}
-#| title: Data
-show(churn_reason[churn_reason["product"]=="Premium"])
-```
-
-## Column {width=65%}
-
-### Row
-
-```{python}
-#| component: valuebox
-#| title: "Churn rate 2022"
-#| icon: archive
-#| color: "#7A6C5D"
-dict(
-  value = "17%"
-)
-```
-
-```{python}
-#| component: valuebox
-#| title: "Current churn rate"
-#| icon: graph-down
-#| color: "#86C7ED"
-dict(
-  value = "15%"
-)
-```
-
-```{python}
-#| component: valuebox
-#| title: "Churn rate goal"
-#| icon: bullseye
-#| color: "#A54657"
-dict(
-  value = "10%"
-)
-```
-
-
-### Row 
-
-#### Column {.tabset}
-
-```{python}
-#| title: Days since purchase
-plot_contract_type(churn, "Premium")
-```
-
-```{python}
-#| title: Purchase amount
-plot_contract_type(
-  churn, 
-  "Premium", 
-  "average_purchase_amount", 
-  "Average purchase amount"
-)
-```
-
-#### Column
-
-##### Row
-
-```{python}
-#| title: Purchase characteristics
-show(table_purchases(purchase_characteristics, "Premium"))
-```
-
-##### Row
-
-##### Row
-
-```{python}
-#| title: Contracts by state
-show(churn[churn['product'] == "Premium"]
-  .groupby(['contract', 'state'])
-  .size()
-  .reset_index(name='count'))
-```
-
-# Professional
-
-## Column {.tabset}
-
-```{python}
-#| title: Plot
-plot_churn_reason(churn_reason, "Premium")
-```
-
-```{python}
-#| title: Data
-show(churn_reason[churn_reason["product"]=="Premium"])
-```
-
-## Column {width=65%}
-
-### Row
-
-```{python}
-#| component: valuebox
-#| title: "Churn rate 2022"
-#| icon: archive
-#| color: "#7A6C5D"
-dict(
-  value = "17%"
-)
-```
-
-```{python}
-#| component: valuebox
-#| title: "Current churn rate"
-#| icon: graph-down
-#| color: "#86C7ED"
-dict(
-  value = "13%"
-)
-```
-
-```{python}
-#| component: valuebox
-#| title: "Churn rate goal"
-#| icon: bullseye
-#| color: "#A54657"
-dict(
-  value = "10%"
-)
-```
-
-
-### Row 
-
-#### Column {.tabset}
-
-```{python}
-#| title: Days since purchase
-plot_contract_type(churn, "Professional")
-```
-
-```{python}
-#| title: Purchase amount
-plot_contract_type(
-  churn, 
-  "Professional", 
-  "average_purchase_amount", 
-  "Average purchase amount"
-)
-```
-
-#### Column
-
-##### Row
-
-```{python}
-#| title: Purchase characteristics
-show(table_purchases(purchase_characteristics, "Professional"))
-```
-
-##### Row
-
-```{python}
-#| title: Contracts by state
-show(churn[churn['product'] == "Professional"]
-  .groupby(['contract', 'state'])
-  .size()
-  .reset_index(name='count'))
-```
-
-

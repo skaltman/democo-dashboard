@@ -1,4 +1,6 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
+env/
+*.pyc
+*.html
+*_files/
+.Rproj.user/
+
