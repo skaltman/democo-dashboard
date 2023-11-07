@@ -32,7 +32,7 @@ purchase_characteristics = pd.read_csv("data/purchase_characteristics.csv")
 ## Row
 
 ```{python}
-#| component: valuebox
+#| content: valuebox
 #| title: "Churn rate 2022"
 dict(
   icon = "archive",
@@ -42,7 +42,7 @@ dict(
 ```
 
 ```{python}
-#| component: valuebox
+#| content: valuebox
 #| title: "Current churn rate"
 dict(
   icon = "graph-down",
@@ -52,7 +52,7 @@ dict(
 ```
 
 ```{python}
-#| component: valuebox
+#| content: valuebox
 #| title: "Churn rate goal"
 dict(
   icon = "bullseye",
